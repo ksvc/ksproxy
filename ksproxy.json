@@ -1,0 +1,10 @@
+{
+    "bind_ip": "127.0.0.1",
+    "bind_port": 9000,
+    "log_path": "log",
+    //10->debug, 20->info, 30->warning, 40->error
+    "log_level": 10,
+    "region": "cn-beijing-6",
+    "ks_access_key_id": "AKLTP5XrdzfCRbWH79DSr41iaQ",
+    "ks_secret_access_key": "OKdVimd2TFBIVfxnzJeAeu5kgPsVK8W8z5BFh0Ue9Z+vtqYC3QA7p1gz1RdcRrm0eg=="
+}
