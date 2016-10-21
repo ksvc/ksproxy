@@ -1,7 +1,8 @@
-# ksproxy¼ò½é
-ÎªÁË±ÜÃâÓÃ»§³ÌĞòÁ¬½Ókop½Ó¿ÚÊ±½Ï¸´ÔÓµÄÈÏÖ¤¹ı³Ì£¬ksproxy½«ÈÏÖ¤¹ı³Ì·â×°£¬¶ÔÓÃ»§³ÌĞòÌá¹©²»ĞèÒªÈÏÖ¤µÄ¼òµ¥HTTP½Ó¿Ú¡£ÈÏÖ¤ĞèÒªµÄks_access_key_id¡¢ks_secret_access_keyĞèÒªÅäÖÃÔÚksproxyµÄÅäÖÃÎÄ¼şÖĞ¡£
-
-# °²×°kscore
+# ksproxyç®€ä»‹
+ä¸ºäº†é¿å…ç”¨æˆ·ç¨‹åºè¿æ¥kscæ¥å£æ—¶è¾ƒå¤æ‚çš„è®¤è¯è¿‡ç¨‹ï¼Œksproxyå°†è®¤è¯è¿‡ç¨‹å°è£…ï¼Œå¯¹ç”¨å¤–æä¾›ä¸éœ€è¦è®¤è¯çš„ç®€å•HTTPæ¥å£ï¼Œåªéœ€å°†è®¤è¯ä½¿ç”¨çš„ks_access_key_idã€ks_secret_access_keyé…ç½®åœ¨ksproxyçš„é…ç½®æ–‡ä»¶ä¸­å³å¯ã€‚
+# è¿è¡Œå¹³å°
+æœ¬ç¨‹åºåœ¨Ubuntu 14.04 (Python 2.7.9)ã€CentOS 6.5 (Python 2.6.6)ã€Windows 7 x86_64 (Python 2.7.12)ä¸Šæµ‹è¯•é€šè¿‡ã€‚ä»¥ä¸‹ä¸ºLinuxå¹³å°çš„å®‰è£…æ–¹æ³•ï¼ŒWindowså¹³å°çš„å®‰è£…æ­¥éª¤è¯·å‚è€ƒ https://github.com/ksvc/ksproxy/blob/master/README_Windows.md
+# å®‰è£…kscore
 ```
 mkdir /data/koptest/
 cd /data/koptest
@@ -9,51 +10,49 @@ git clone https://github.com/KscSDK/ksc-sdk-python.git
 cd /data/koptest/ksc-sdk-python
 python setup.py install
 ```
-°²×°¹ı³ÌÖĞ£¬»á½«kscoreºÍÏà¹ØµÄÒÀÀµ°ü°²×°µ½ÏµÍ³µÄpython¿âÂ·¾¶ÖĞ£¬Èç
+å®‰è£…è¿‡ç¨‹ä¸­ï¼Œä¼šå°†kscoreå’Œç›¸å…³çš„ä¾èµ–åŒ…å®‰è£…åˆ°ç³»ç»Ÿçš„pythonåº“è·¯å¾„ä¸­ï¼Œå¦‚
 ```
 /usr/local/lib/python2.7/site-packages
 ```
-Èç¹û²»Ïë¶ÔÏµÍ³Ôì³ÉĞŞ¸Ä£¬ÍÆ¼öÊ¹ÓÃVirtualEnv¡£ÒÔÏÂÓĞVirtualEnvµÄ¼òÒªËµÃ÷¡£
-
-# ÏÂÔØksproxy´úÂë
+å¦‚æœä¸æƒ³å¯¹ç³»ç»Ÿé€ æˆä¿®æ”¹ï¼Œæˆ–æ²¡æœ‰rootæƒé™ï¼Œæ¨èä½¿ç”¨VirtualEnvã€‚æœ¬æ–‡æœ€åæœ‰VirtualEnvç”¨æ³•çš„ç®€è¦ä»‹ç»ã€‚
+# ä¸‹è½½ksproxyä»£ç 
 ```
 cd /data/koptest
-git clone https://github.com/thinkphoebe/ksproxy.git
+git clone https://github.com/ksvc/ksproxy.git
 cd /data/ksproxy
 ```
-
-# ĞŞ¸ÄÅäÖÃÎÄ¼ş
+# ä¿®æ”¹é…ç½®æ–‡ä»¶
 ```
-ksproxy.json£¬Ò»°ãĞèĞŞ¸Äregion¡¢ks_access_key_id¡¢ks_secret_access_keyµÈÅäÖÃ¡£
+ksproxy.jsonï¼Œä¸€èˆ¬éœ€ä¿®æ”¹regionã€ks_access_key_idã€ks_secret_access_keyç­‰é…ç½®ã€‚
 ```
-
-# Æô¶¯proxy³ÌĞò
+# å¯åŠ¨proxyç¨‹åº
+æ³¨æ„ï¼šå¦‚æœæœ‰é˜²ç«å¢™ï¼Œè¯·å…³é—­æˆ–å°†ç¨‹åºç»‘å®šç«¯å£æ·»åŠ åˆ°é˜²ç«å¢™ä¾‹å¤–ã€‚
 ```
 python ./ksproxy.py
 ```
-
 # VirtualEnv
-VirtualEnv¿ÉÒÔ´´½¨¶ÀÁ¢µÄPythonÔËĞĞ»·¾³¡£ÔÚUbuntuÏÂ¿ÉÍ¨¹ıÈçÏÂÃüÁî°²×°VirtualEnvÈí¼ş:
+VirtualEnvå¯ä»¥åˆ›å»ºç‹¬ç«‹çš„Pythonè¿è¡Œç¯å¢ƒã€‚åœ¨Ubuntu 14.04å¯é€šè¿‡å¦‚ä¸‹å‘½ä»¤å®‰è£…VirtualEnvè½¯ä»¶:
 ```
 sudo aptitude install python-pip
 sudo pip install virtualenv
 ```
-
-´´½¨Ò»¸ö¶ÀÁ¢µÄÔËĞĞ»·¾³:
+CentOS 6.5å¯é€šè¿‡å¦‚ä¸‹å‘½ä»¤å®‰è£…ï¼š
+```
+sudo yum install python-setuptools python-devel
+sudo easy_install virtualenv
+```
+åˆ›å»ºä¸€ä¸ªç‹¬ç«‹çš„è¿è¡Œç¯å¢ƒ:
 ```
 cd /data
 virtualenv --no-site-packages koptest
 ```
-
-¼¤»î¸ÃÔËĞĞ»·¾³:
+æ¿€æ´»è¯¥è¿è¡Œç¯å¢ƒ:
 ```
 cd /data/koptest
 source ./bin/activate
 ```
-
-¼¤»îºóÖÕ¶ËµÄÃüÁîÌáÊ¾·ûÇ°»áÓĞ¸ö(koptest)µÄÇ°×º:
+æ¿€æ´»åç»ˆç«¯çš„å‘½ä»¤æç¤ºç¬¦å‰ä¼šæœ‰ä¸ª(koptest)çš„å‰ç¼€:
 ```
 (koptest) sunny@tiger:~$
 ```
-
-Ö®ºópipµÈÃüÁî°²×°µÄ°ü¶¼ÊÇ°²×°µ½´´½¨µÄÔËĞĞ»·¾³ÖĞ£¬²»»á¶ÔÏµÍ³²úÉúÓ°Ïì¡£
+ä¹‹åpipç­‰å‘½ä»¤å®‰è£…çš„åŒ…éƒ½æ˜¯å®‰è£…åˆ°åˆ›å»ºçš„è¿è¡Œç¯å¢ƒä¸­ï¼Œä¸ä¼šå¯¹ç³»ç»Ÿäº§ç”Ÿå½±å“ã€‚

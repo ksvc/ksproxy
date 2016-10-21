@@ -34,7 +34,7 @@ class _request_handler(BaseHTTPServer.BaseHTTPRequestHandler):
 
         # 解析请求URL。paths[0]为service_name, paths[1]为method
         parsed_url = urlparse.urlparse(self.path)
-        paths = parsed_url.path.strip('/').split('/')
+        paths = os.path.normpath(parsed_url.path.strip('/')).split('/')
         if len(paths) < 2:
             g_logger.error('[%s] invalid request url:%s', self.client_address[0], self.path)
             self.send_response(400, 'Bad Request URL')
@@ -113,7 +113,8 @@ class _request_handler(BaseHTTPServer.BaseHTTPRequestHandler):
             self._write_response(200, json.dumps(res))
             return
         except kscore.validate.ParamValidationError:
-            g_logger.error('[%s] got exception [ParamValidationError] on call method for [%s]', self.client_address[0], self.path)
+            g_logger.error('[%s] got exception [ParamValidationError] on call method for [%s]',
+                           self.client_address[0], self.path)
             self.send_response(400, 'Parameter validation failed')
         except kscore.client.ClientError:
             g_logger.error('[%s] got exception [ClientError] on call method for [%s], probably you configured an invalid [ks_access_key_id]',
@@ -124,7 +125,8 @@ class _request_handler(BaseHTTPServer.BaseHTTPRequestHandler):
                            self.client_address[0], self.path)
             self.send_response(500, 'Invalid security token configured')
         except:
-            g_logger.error('[%s] got exception on call method for [%s]', self.client_address[0], self.path, traceback.format_exc())
+            g_logger.error('[%s] got exception on call method for [%s]',
+                           self.client_address[0], self.path, traceback.format_exc())
             self.send_response(500, 'Unknow error')
         self.end_headers()
 
@@ -145,13 +147,15 @@ class _request_handler(BaseHTTPServer.BaseHTTPRequestHandler):
         try:
             self._handle_request(False)
         except:
-            g_logger.error('[%s] got exception on GET [%s], %s', self.client_address[0], self.path, traceback.format_exc())
+            g_logger.error('[%s] got exception on GET [%s], %s',
+                           self.client_address[0], self.path, traceback.format_exc())
 
     def do_POST(self):
         try:
             self._handle_request(True)
         except:
-            g_logger.error('[%s] got exception on POST [%s], %s', self.client_address[0], self.path, traceback.format_exc())
+            g_logger.error('[%s] got exception on POST [%s], %s',
+                           self.client_address[0], self.path, traceback.format_exc())
 
 
 class _threaded_httpserver(SocketServer.ThreadingMixIn, BaseHTTPServer.HTTPServer):

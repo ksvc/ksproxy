@@ -1,10 +1,20 @@
 {
-    "bind_ip": "127.0.0.1",
+    //服务程序的绑定IP，0.0.0.0即any，所有IP
+    "bind_ip": "0.0.0.0",
+
+    //服务程序的帮顶端口
     "bind_port": 9000,
+
+    //日志文件存放路径，可以是绝对路径或相对ksproxy.py的路径
     "log_path": "log",
-    //10->debug, 20->info, 30->warning, 40->error
+
+    //日志的输出级别。10->debug, 20->info, 30->warning, 40->error
     "log_level": 10,
+
+    //ksc服务的region
     "region": "cn-beijing-6",
+
+    //ksc API用于标识调用者身份的安全凭证，用户需要登陆金山云控制台IAM服务申请
     "ks_access_key_id": "AKLTP5XrdzfCRbWH79DSr41iaQ",
     "ks_secret_access_key": "OKdVimd2TFBIVfxnzJeAeu5kgPsVK8W8z5BFh0Ue9Z+vtqYC3QA7p1gz1RdcRrm0eg=="
 }
