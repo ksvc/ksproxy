@@ -1,7 +1,13 @@
 # ksproxy简介
 为了避免用户程序连接ksc接口时较复杂的认证过程，ksproxy将认证过程封装，对用外提供不需要认证的简单HTTP接口，只需将认证使用的ks_access_key_id、ks_secret_access_key配置在ksproxy的配置文件中即可。
+
+请求的URL格式: http://serve_ip:serve_port/service_name/method?params
+如：http://127.0.0.1:9000/offline/GetPresetDetail?preset=test
+service_name, method, GET或POST, 及GET/POST的参数和响应格式请参考相应服务的API手册
+
 # 运行平台
 本程序在Ubuntu 14.04 (Python 2.7.9)、CentOS 6.5 (Python 2.6.6)、Windows 7 x86_64 (Python 2.7.12)上测试通过。以下为Linux平台的安装方法，Windows平台的安装步骤请参考 https://github.com/ksvc/ksproxy/blob/master/README_Windows.md
+
 # 安装kscore
 ```
 mkdir /data/koptest/
@@ -15,16 +21,19 @@ python setup.py install
 /usr/local/lib/python2.7/site-packages
 ```
 如果不想对系统造成修改，或没有root权限，推荐使用VirtualEnv。本文最后有VirtualEnv用法的简要介绍。
+
 # 下载ksproxy代码
 ```
 cd /data/koptest
 git clone https://github.com/ksvc/ksproxy.git
 cd /data/ksproxy
 ```
+
 # 修改配置文件
 ```
 ksproxy.json，一般需修改region、ks_access_key_id、ks_secret_access_key等配置。
 ```
+
 # 启动proxy程序
 注意：如果有防火墙，请关闭或将程序绑定端口添加到防火墙例外。
 ```
@@ -56,3 +65,30 @@ source ./bin/activate
 (koptest) sunny@tiger:~$
 ```
 之后pip等命令安装的包都是安装到创建的运行环境中，不会对系统产生影响。
+
+# 使用supervisor使程序以daemon方式运行
+安装和启动监控
+```
+CentOS
+sudo yum install supervisor
+sudo service supervisord start
+
+Debian / Ubuntu
+sudo aptitude install supervisor
+sudo service supervisor start
+```
+
+添加监控，修改/etc/supervisord.conf
+```
+[program:ksproxy]
+command=/home/work/ksproxy/bin/python /home/work/ksproxy/ksproxy/ksproxy.py # 执行的命令，注意使用的是virtualenv
+directory=/home/work/ksproxy/ksproxy  # 执行命令的路径
+user=work # 执行命令的用户
+autostart=true # 随着supervisord的启动而启动
+autorestart=true  # 出错后自动重启
+```
+
+更新配置
+```
+supervisorctl update
+```

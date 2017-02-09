@@ -1,7 +1,7 @@
 # -*- encoding:utf-8 -*-
 '''
 请求的URL格式: http://serve_ip:serve_port/service_name/method?params
-如： http://127.0.0.1:9000/offline/GetPresetDetail?preset=test
+如：http://127.0.0.1:9000/offline/GetPresetDetail?preset=test
 service_name, method, GET或POST, 及GET/POST的参数和响应格式请参考相应服务的API手册
 '''
 import threading
